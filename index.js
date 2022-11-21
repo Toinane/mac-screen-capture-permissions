@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 const execa = require('execa');
-const { isElectron } = require('electron-util/node');
+const {isElectron} = require('electron-util/node');
 const macosVersion = require('macos-version');
 
 const permissionExists = macosVersion.isGreaterThanOrEqualTo('10.15');
@@ -10,7 +10,7 @@ const permissionExists = macosVersion.isGreaterThanOrEqualTo('10.15');
 let filePath;
 
 if (isElectron) {
-	const { api, openSystemPreferences } = require('electron-util');
+	const {api, openSystemPreferences} = require('electron-util');
 
 	exports.openSystemPreferences = () => openSystemPreferences('security', 'Privacy_ScreenCapture');
 
@@ -53,7 +53,7 @@ exports.hasPromptedForPermission = () => {
 	return false;
 };
 
-exports.resetPermissions = ({ bundleId = '' } = {}) => {
+exports.resetPermissions = ({bundleId = ''} = {}) => {
 	try {
 		execa.sync('tccutil', ['reset', 'ScreenCapture', bundleId].filter(Boolean));
 
